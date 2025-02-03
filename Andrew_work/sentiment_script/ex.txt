@@ -1,1 +1,0 @@
-example for sentiment_script folder
