@@ -40,16 +40,16 @@
 - Files
   - 'Stock Analysis.pdf'
 
-### Data Sources
+#### Data Sources
 Reddit: Sentiment data collected from subreddit posts keyword Coca-Cola and pepsi.
 Twitter: Sentiment data collected from tweets mentioning Coca-Cola and Pepsi.
 Yahoo Finance: Stock price data for Coca-Cola and Pepsi.
 
-### Contributors
+#### Contributors
 Andrew Ham: Sentiment analysis, dashboards, and data preparation.
 Jason Jeong: Stock analysis, predictions, and final report.
 
-### Contact
+#### Contact
 For any questions or suggestions, feel free to contact us:
 Andrew Ham: hamtaeyi0416@gmail.com
 Jason Jeong: jeong.huiheon@gmail.com
