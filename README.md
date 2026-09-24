@@ -1,6 +1,6 @@
 # Coca-Cola vs. Pepsi Stock & Sentiment Analysis
 
-**Project Period:** January 2026 – May 2026
+**Project Period:** January 2026 – May 2026  
 **Project Type:** Academic Team Project
 
 ## Overview
@@ -9,36 +9,81 @@ This project analyzes public sentiment toward Coca-Cola and Pepsi using social m
 
 ## My Contributions
 
-My primary responsibilities for this project were:
-
-* Collected and prepared sentiment data from Reddit and Twitter
-* Developed Python scripts to analyze sentiment for Coca-Cola and Pepsi
-* Cleaned and organized social media data for analysis
-* Created dashboards to visualize sentiment and stock trends
-* Collaborated with a team member responsible for stock analysis and prediction
+- Collected and prepared sentiment data from Reddit and Twitter
+- Developed Python scripts to analyze sentiment for Coca-Cola and Pepsi
+- Cleaned and organized social media data for analysis
+- Created Streamlit dashboards to visualize sentiment and stock trends
+- Collaborated with a team member responsible for stock analysis and prediction
 
 ## Technologies
 
-**Python · Jupyter Notebook · Pandas · Sentiment Analysis · Data Visualization**
+Python · Pandas · NLTK/VADER · TextBlob · Matplotlib · Seaborn · Plotly · Streamlit · Jupyter Notebook
 
 ## Repository Structure
 
-* `Andrew_work/`
+- `Andrew_work/data/` — raw Reddit and Twitter datasets
+- `Andrew_work/sentiment_script/` — sentiment-analysis and combined-data scripts
+- `Andrew_work/dashboards/` — Coca-Cola and Pepsi Streamlit dashboards
+- `Jason_work/` — stock analysis, prediction, correlation analysis, and final report
 
-  * `sentiment_script/` — Python scripts for sentiment analysis
-  * `data/` — Reddit and Twitter sentiment datasets
-  * `dashboards/` — Coca-Cola and Pepsi visualization outputs
-* `Jason_work/`
+## Setup
 
-  * Stock analysis, prediction, correlation analysis, and final report
+Clone the repository, move into the project directory, and install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+The sentiment scripts use NLTK's VADER lexicon and download it automatically when needed.
+
+## Running the Analysis
+
+Run the scripts from the `Andrew_work/sentiment_script` directory in this order.
+
+For Coca-Cola:
+
+```bash
+cd Andrew_work/sentiment_script
+python coca_cola_sentiment_reddit.py
+python coca_cola_sentiment_tweets.py
+python coca_cola_sentiment_data.py
+```
+
+For Pepsi:
+
+```bash
+python pepsi_sentiment_reddit.py
+python pepsi_sentiment_tweets.py
+python pepsi_sentiment_data.py
+```
+
+The final two scripts create `coca_cola_sentiment_data.csv` and `pepsi_sentiment_data.csv`, which are used by the dashboards.
+
+## Running the Dashboards
+
+From the repository root:
+
+```bash
+streamlit run Andrew_work/dashboards/coca_cola_dashboard.py
+```
+
+or
+
+```bash
+streamlit run Andrew_work/dashboards/pepsi_dashboard.py
+```
 
 ## Data Sources
 
-* Reddit
-* Twitter
-* Yahoo Finance
+- Reddit
+- Twitter
+- Yahoo Finance
 
 ## Contributors
 
-* **Andrew Ham** — Sentiment analysis, dashboards, and data preparation
-* **Jason Jeong** — Stock analysis, predictions, and final report
+- **Andrew Ham** — Sentiment analysis, dashboards, and data preparation
+- **Jason Jeong** — Stock analysis, predictions, and final report
+
+## Notes
+
+This repository contains an academic team project. The social-media datasets are included for analysis and reproducibility. No API credentials are required to run the included analysis on the stored datasets.
