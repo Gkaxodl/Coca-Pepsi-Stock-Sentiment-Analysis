@@ -2,6 +2,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from pathlib import Path
 
 st.set_page_config(layout="wide", page_title="Coca Cola Stock Analysis Dashboard")
 
@@ -41,12 +42,14 @@ st.markdown(
 
 @st.cache_data
 def load_default_data():
+    dashboard_dir = Path(__file__).resolve().parent
+    repo_root = dashboard_dir.parents[1]
     try:
-        coca_data = pd.read_csv("../../Jason_work/stock_analysis/cola.csv")
-        sentiment_data = pd.read_csv("../sentiment_script/coca_cola_sentiment_data.csv")
-        gross_profit_data = pd.read_csv("../../Jason_work/stock_analysis/gross profit(KO).csv")
+        coca_data = pd.read_csv(repo_root / "Jason_work" / "stock_analysis" / "cola.csv")
+        sentiment_data = pd.read_csv(dashboard_dir.parent / "sentiment_script" / "coca_sentiment_data.csv")
+        gross_profit_data = pd.read_csv(repo_root / "Jason_work" / "stock_analysis" / "gross profit(KO).csv")
     except FileNotFoundError:
-        st.error("Error: Required data files not found. Please check the file paths.")
+        st.error("Error: Required data files not found. Please check the repository structure.")
         st.stop()
 
     coca_data.rename(columns={"date": "Date", "Close/Last": "Close", "open": "Open", "high": "High", "low": "Low", "volume": "Volume"}, inplace=True)
@@ -67,22 +70,12 @@ def load_default_data():
 
     return coca_data, sentiment_data, gross_profit_data
 
-def generate_forecast(coca_data):
-    future_dates = pd.date_range(start=coca_data['Date'].max(), periods=365, freq='D')[1:]
-    forecast = pd.DataFrame({
-        "Date": future_dates,
-        "Forecast": coca_data['Close'].iloc[-1] * (1 + 0.001 * pd.Series(range(len(future_dates))))
-    })
-    return forecast
-
 def generate_charts(coca_data, sentiment_data, gross_profit_data):
     charts = []
 
-    forecast = generate_forecast(coca_data)
     fig1 = go.Figure()
     fig1.add_trace(go.Scatter(x=coca_data['Date'], y=coca_data['Close'], mode='lines', name='Close Price', line=dict(color='red')))
-    fig1.add_trace(go.Scatter(x=forecast['Date'], y=forecast['Forecast'], mode='lines', name='Forecast', line=dict(color='darkred')))
-    fig1.update_layout(title="Stock Price Insights with Forecast", template="plotly_dark", height=400, plot_bgcolor="#2a2a2a", paper_bgcolor="#2a2a2a", font=dict(color="#ffffff"))
+    fig1.update_layout(title="Historical Stock Price", template="plotly_dark", height=400, plot_bgcolor="#2a2a2a", paper_bgcolor="#2a2a2a", font=dict(color="#ffffff"))
     charts.append(fig1)
 
     fig2 = px.histogram(sentiment_data, x="Sentiment Score", nbins=20, title="Sentiment Score Distribution", template="plotly_dark", height=400, color_discrete_sequence=["red"])
@@ -126,16 +119,16 @@ def generate_charts(coca_data, sentiment_data, gross_profit_data):
     fig4.update_layout(plot_bgcolor="#2a2a2a", paper_bgcolor="#2a2a2a", font=dict(color="#ffffff"))
     charts.append(fig4)
 
-    coca_data['Year'] = coca_data['Date'].dt.to_period('M')
-    monthly_avg_price = coca_data.groupby('Year')['Close'].mean().reset_index()
-    monthly_avg_price['Year'] = monthly_avg_price['Year'].dt.to_timestamp()
+    coca_data['Month'] = coca_data['Date'].dt.to_period('M')
+    monthly_avg_price = coca_data.groupby('Month')['Close'].mean().reset_index()
+    monthly_avg_price['Month'] = monthly_avg_price['Month'].dt.to_timestamp()
 
     fig5 = px.line(
         monthly_avg_price,
-        x="Year",
+        x="Month",
         y="Close",
-        title="Yearly Price of Coca Cola",
-        labels={"Year": "Year"},
+        title="Monthly Average Price of Coca-Cola",
+        labels={"Month": "Month"},
         template="plotly_dark",
         height=400,
         line_shape='spline',
@@ -187,7 +180,7 @@ def generate_charts(coca_data, sentiment_data, gross_profit_data):
         coca_data,
         x="Volume",
         y="Close",
-        title="Sentiment vs Volume Correlation",
+        title="Trading Volume vs Stock Price",
         labels={"Volume": "Volume", "Close": "Close Price"},
         template="plotly_dark",
         height=400,
@@ -233,5 +226,5 @@ for i, chart in enumerate(charts):
         st.plotly_chart(chart, use_container_width=True)
 
 st.markdown("---")
-st.write("Data Source: Reddit, Twitter & Yahoo")
+st.write("Data Sources: Reddit, Twitter & Yahoo Finance")
 st.write("Made by Andrew Ham & Jason Jeong")
