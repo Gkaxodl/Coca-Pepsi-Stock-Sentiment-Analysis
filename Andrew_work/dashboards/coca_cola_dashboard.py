@@ -46,7 +46,7 @@ def load_default_data():
     repo_root = dashboard_dir.parents[1]
     try:
         coca_data = pd.read_csv(repo_root / "Jason_work" / "stock_analysis" / "cola.csv")
-        sentiment_data = pd.read_csv(dashboard_dir.parent / "sentiment_script" / "coca_sentiment_data.csv")
+        sentiment_data = pd.read_csv(dashboard_dir.parent / "sentiment_script" / "coca_cola_sentiment_data.csv")
         gross_profit_data = pd.read_csv(repo_root / "Jason_work" / "stock_analysis" / "gross profit(KO).csv")
     except FileNotFoundError:
         st.error("Error: Required data files not found. Please check the repository structure.")
