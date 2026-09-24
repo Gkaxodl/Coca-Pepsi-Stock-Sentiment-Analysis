@@ -1,6 +1,6 @@
 # Coca-Cola vs. Pepsi Stock & Sentiment Analysis
 
-**Project Period:** January 2026 – May 2026  
+**Project Period:** Fall 2025  
 **Project Type:** Academic Team Project
 
 ## Overview
