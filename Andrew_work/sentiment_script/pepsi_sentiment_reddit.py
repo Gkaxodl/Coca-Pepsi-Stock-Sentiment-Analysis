@@ -8,7 +8,7 @@ import nltk
 nltk.download('vader_lexicon')
 
 # Load data
-df = pd.read_csv("pepsi_reddit.csv")
+df = pd.read_csv("../data/pepsi_reddit.csv")
 df['created_at'] = pd.to_datetime(df['created_at'])
 df['date'] = df['created_at'].dt.date
 
