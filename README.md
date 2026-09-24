@@ -1,55 +1,44 @@
-# Coca_Pepsi_Stock_Sentiment_Analysis
+# Coca-Cola vs. Pepsi Stock & Sentiment Analysis
 
-## Key Components
-### **Andrew_work**
-#### Dashboards
-- Visual representations of Coca-Cola and Pepsi sentiment and stock trends.
-- Files:
-  - 'coca_cola_stock_dashboard.png'
-  - 'pepsi_stock_dashboard.png'
-  
-#### Data
-- Raw sentiment data collected from Reddit and Twitter for Coca-Cola and Pepsi.
-- Files:
-  - 'coca_cola_reddit.csv'
-  - 'coca_cola_tweets.csv'
-  - 'pepsi_reddit.csv'
-  - 'pepsi_tweets.csv' 
+**Project Period:** January 2026 – May 2026
+**Project Type:** Academic Team Project
 
-#### Sentiment Scripts
-- Python scripts used to process and analyze sentiment data.
-- Files:
-  - 'coca_cola_sentiment_data.py'
-  - 'coca_cola_sentiment_reddit.py'
-  - 'coca_cola_sentiment_tweets.py'
-  - 'pepsi_sentiment_data.py'
-  - 'pepsi_sentiment_reddit.py'
-  - 'pepsi_sentiment_tweets.py'
+## Overview
 
-### **Jason_work**
-#### Stock Analysis
-- Jupyter notebooks and data for analyzing Coca-Cola and Pepsi stock prices.
-- Includes stock price predictions and correlation analyses.
-- Files
-  - 'coca_cola_analysis.ipynb'
-  - 'pepsi_analysis.ipynb'
+This project analyzes public sentiment toward Coca-Cola and Pepsi using social media data and compares sentiment trends with stock market performance. The project combines sentiment analysis, data visualization, and financial data analysis to explore patterns between public opinion and stock behavior.
 
-#### Report
-- Comprehensive report summarizing the findings of this project.
-- Provides detailed insights into both sentiment trends and stock performance.
-- Files
-  - 'Stock Analysis.pdf'
+## My Contributions
 
-#### Data Sources
-- Reddit: Sentiment data collected from subreddit posts keyword Coca-Cola and pepsi.
-- Twitter: Sentiment data collected from tweets mentioning Coca-Cola and Pepsi.
-- Yahoo Finance: Stock price data for Coca-Cola and Pepsi.
+My primary responsibilities for this project were:
 
-#### Contributors
-- Andrew Ham: Sentiment analysis, dashboards, and data preparation.
-- Jason Jeong: Stock analysis, predictions, and final report.
+* Collected and prepared sentiment data from Reddit and Twitter
+* Developed Python scripts to analyze sentiment for Coca-Cola and Pepsi
+* Cleaned and organized social media data for analysis
+* Created dashboards to visualize sentiment and stock trends
+* Collaborated with a team member responsible for stock analysis and prediction
 
-#### Contact
-- For any questions or suggestions, feel free to contact us:
-- Andrew Ham: hamtaeyi0416@gmail.com
-- Jason Jeong: jeong.huiheon@gmail.com
+## Technologies
+
+**Python · Jupyter Notebook · Pandas · Sentiment Analysis · Data Visualization**
+
+## Repository Structure
+
+* `Andrew_work/`
+
+  * `sentiment_script/` — Python scripts for sentiment analysis
+  * `data/` — Reddit and Twitter sentiment datasets
+  * `dashboards/` — Coca-Cola and Pepsi visualization outputs
+* `Jason_work/`
+
+  * Stock analysis, prediction, correlation analysis, and final report
+
+## Data Sources
+
+* Reddit
+* Twitter
+* Yahoo Finance
+
+## Contributors
+
+* **Andrew Ham** — Sentiment analysis, dashboards, and data preparation
+* **Jason Jeong** — Stock analysis, predictions, and final report
