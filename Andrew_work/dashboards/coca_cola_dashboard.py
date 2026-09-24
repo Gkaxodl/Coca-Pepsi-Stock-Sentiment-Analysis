@@ -42,9 +42,9 @@ st.markdown(
 @st.cache_data
 def load_default_data():
     try:
-        coca_data = pd.read_csv("/Users/andrewham/Downloads/Cola.csv")
-        sentiment_data = pd.read_csv("/Users/andrewham/Downloads/coca_cola_sentiment_data.csv")
-        gross_profit_data = pd.read_csv("/Users/andrewham/Downloads/Gross Profit(KO).csv")
+        coca_data = pd.read_csv("../../Jason_work/stock_analysis/cola.csv")
+        sentiment_data = pd.read_csv("../data/coca_cola_sentiment_data.csv")
+        gross_profit_data = pd.read_csv("../../Jason_work/stock_analysis/gross profit(KO).csv")
     except FileNotFoundError:
         st.error("Error: Required data files not found. Please check the file paths.")
         st.stop()
