@@ -189,12 +189,13 @@ def generate_charts(coca_data, sentiment_data, gross_profit_data):
     fig8.update_layout(plot_bgcolor="#2a2a2a", paper_bgcolor="#2a2a2a", font=dict(color="#ffffff"))
     charts.append(fig8)
 
-    merged_data = pd.merge(coca_data, sentiment_data, on="Date", how="inner")
+    daily_sentiment = sentiment_data.groupby("Date", as_index=False)["Sentiment Score"].mean()
+    merged_data = pd.merge(coca_data, daily_sentiment, on="Date", how="inner")
     fig9 = px.scatter(
         merged_data,
         x="Sentiment Score",
         y="Close",
-        title="Correlation Between Sentiment and Stock Price",
+        title="Daily Sentiment vs Stock Price",
         labels={"Sentiment Score": "Sentiment Score", "Close": "Stock Price"},
         template="plotly_dark",
         height=400,
@@ -219,6 +220,13 @@ col3.metric("📊 Average Price", f"${coca_data['Close'].mean():,.2f}")
 st.subheader("Additional Insights")
 st.write(f"📅 Max Volume Date: {coca_data.loc[coca_data['Volume'].idxmax(), 'Date'].strftime('%Y-%m-%d')}")
 st.write(f"🧮 Average Sentiment Score: {sentiment_data['Sentiment Score'].mean():.2f}")
+
+# A simple descriptive correlation for dates available in both datasets
+daily_sentiment = sentiment_data.groupby("Date", as_index=False)["Sentiment Score"].mean()
+matched = pd.merge(coca_data[["Date", "Close"]], daily_sentiment, on="Date", how="inner")
+if len(matched) > 1:
+    correlation = matched["Close"].corr(matched["Sentiment Score"])
+    st.write(f"🔎 Sentiment / Price Correlation: {correlation:.2f}")
 
 chart_columns = st.columns(3)
 for i, chart in enumerate(charts):
