@@ -59,7 +59,7 @@ python pepsi_sentiment_tweets.py
 python pepsi_sentiment_data.py
 ```
 
-The final two scripts create `coca_cola_sentiment_data.csv` and `pepsi_sentiment_data.csv`, which are used by the dashboards.
+The final two scripts create `coca_cola_sentiment_data.csv` and `pepsi_sentiment_data.csv`, which are used by the dashboards. The dashboards aggregate sentiment by date before comparing it with daily stock prices so that multiple social-media posts from the same day do not duplicate the stock observation.
 
 ## Running the Dashboards
 
@@ -92,4 +92,4 @@ This repository contains an academic team project. Raw social-media records used
 
 The dashboard presents descriptive and exploratory analysis. It does not provide investment advice or a validated stock-price forecasting model.
 
-No API credentials are required to run the included analysis on the stored datasets.
+No API credentials are required. Re-running the sentiment pipeline requires local copies of the original-format social-media datasets because those raw records are intentionally excluded from this public portfolio version.
