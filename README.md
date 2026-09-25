@@ -21,7 +21,7 @@ Python · Pandas · NLTK/VADER · TextBlob · Matplotlib · Seaborn · Plotly ·
 
 ## Repository Structure
 
-- `Andrew_work/data/` — source Reddit and Twitter datasets used for the academic analysis
+- `Andrew_work/data/` — local folder for source Reddit and Twitter datasets (raw social-media files are not distributed in the public portfolio)
 - `Andrew_work/sentiment_script/` — sentiment-analysis and combined-data scripts
 - `Andrew_work/dashboards/` — Coca-Cola and Pepsi Streamlit dashboards
 - `Jason_work/` — stock analysis, prediction, correlation analysis, and final report
@@ -35,6 +35,8 @@ pip install -r requirements.txt
 ```
 
 The sentiment scripts use NLTK's VADER lexicon and download it automatically when needed.
+
+Raw Reddit and Twitter records are intentionally excluded from the public portfolio because they contain platform-specific post and author identifiers. To reproduce the sentiment pipeline, place appropriately formatted source datasets in `Andrew_work/data/` using the filenames referenced by the scripts.
 
 ## Running the Analysis
 
@@ -86,7 +88,7 @@ streamlit run Andrew_work/dashboards/pepsi_dashboard.py
 
 ## Notes
 
-This repository contains an academic team project. The included social-media records are public posts collected for academic analysis and may contain platform-specific post or author identifiers. They are included only to document the original project workflow.
+This repository contains an academic team project. Raw social-media records used in the original analysis are intentionally not distributed in the public portfolio. The repository preserves the analysis code and project workflow without publishing platform-specific post or author identifiers.
 
 The dashboard presents descriptive and exploratory analysis. It does not provide investment advice or a validated stock-price forecasting model.
 
