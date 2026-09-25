@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# macOS / editors
+.DS_Store
+.vscode/
+
+# Generated sentiment outputs
+Andrew_work/sentiment_script/*_sentiment_reddit.csv
+Andrew_work/sentiment_script/*_sentiment_tweets.csv
+Andrew_work/sentiment_script/*_sentiment_data.csv
+
+# Raw social-media data is kept local for privacy/platform identifiers
+Andrew_work/data/*.csv
