@@ -4,10 +4,18 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
 import seaborn as sns
 import nltk
+from pathlib import Path
 
 nltk.download('vader_lexicon')
 
-df = pd.read_csv("../data/coca_cola_reddit.csv")
+data_path = Path(__file__).resolve().parent.parent / "data" / "coca_cola_reddit.csv"
+if not data_path.exists():
+    raise FileNotFoundError(
+        f"Source data not found: {data_path}. "
+        "Raw social-media files are excluded from the public portfolio; see README.md."
+    )
+
+df = pd.read_csv(data_path)
 df['created_at'] = pd.to_datetime(df['created_at'])
 df['date'] = df['created_at'].dt.date
 
