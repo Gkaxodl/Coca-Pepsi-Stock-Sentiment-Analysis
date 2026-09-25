@@ -4,10 +4,18 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
 import seaborn as sns
 import nltk
+from pathlib import Path
 
 nltk.download('vader_lexicon')
 
-df = pd.read_csv("../data/pepsi_tweets.csv")
+data_path = Path(__file__).resolve().parent.parent / "data" / "pepsi_tweets.csv"
+if not data_path.exists():
+    raise FileNotFoundError(
+        f"Source data not found: {data_path}. "
+        "Raw social-media files are excluded from the public portfolio; see README.md."
+    )
+
+df = pd.read_csv(data_path)
 df['created_at'] = pd.to_datetime(df['created_at'])
 df['date'] = df['created_at'].dt.date
 
@@ -27,9 +35,9 @@ def analyze_sentiments(data):
 
 df = analyze_sentiments(df)
 
-keyword = input("Enter a keyword to filter Reddit posts (e.g., 'Pepsi'): ").strip()
-filtered_df = df[df['text'].str.contains(keyword, case=False)]
-print(f"Filtered {len(filtered_df)} posts containing the keyword: {keyword}")
+keyword = input("Enter a keyword to filter tweets (e.g., 'Pepsi'): ").strip()
+filtered_df = df[df['text'].str.contains(keyword, case=False, na=False)]
+print(f"Filtered {len(filtered_df)} tweets containing the keyword: {keyword}")
 
 def create_visualizations(data, prefix="pepsi"):
 
