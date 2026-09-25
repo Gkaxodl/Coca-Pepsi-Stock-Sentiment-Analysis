@@ -19,7 +19,7 @@ df = pd.read_csv(data_path)
 df['created_at'] = pd.to_datetime(df['created_at'])
 df['date'] = df['created_at'].dt.date
 
-df['text'] = df['text'].astype(str).fillna('')
+df['text'] = df['text'].fillna('').astype(str)
 
 def analyze_sentiments(data):
     sia = SentimentIntensityAnalyzer()
@@ -108,5 +108,6 @@ def create_visualizations(data, prefix="reddit_coca_cola"):
 
 create_visualizations(df)
 
-df.to_csv("coca_cola_sentiment_reddit.csv", index=False)
+output_path = Path(__file__).resolve().parent / "coca_cola_sentiment_reddit.csv"
+df.to_csv(output_path, index=False)
 print("Final analyzed data saved to: coca_cola_sentiment_reddit.csv")
