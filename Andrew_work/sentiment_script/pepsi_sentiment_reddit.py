@@ -21,7 +21,7 @@ df['created_at'] = pd.to_datetime(df['created_at'])
 df['date'] = df['created_at'].dt.date
 
 # Ensure 'text' column contains only strings
-df['text'] = df['text'].astype(str).fillna('')
+df['text'] = df['text'].fillna('').astype(str)
 
 def analyze_sentiments(data):
     sia = SentimentIntensityAnalyzer()
@@ -111,5 +111,6 @@ def create_visualizations(data, prefix="pepsi_reddit"):
 
 create_visualizations(df)
 
-df.to_csv("pepsi_sentiment_reddit.csv", index=False)
+output_path = Path(__file__).resolve().parent / "pepsi_sentiment_reddit.csv"
+df.to_csv(output_path, index=False)
 print("Final analyzed data saved to: pepsi_sentiment_reddit.csv")
